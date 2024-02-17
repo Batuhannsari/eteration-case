@@ -1,6 +1,6 @@
 import { getProductsRequest } from "@/api/controllers/product-controller";
 import { GlobalStateContextTypes } from "@/types/GlobalStateContextTypes";
-import { ProductType } from "@/types/ProductType";
+import { ProductDefaultValue, ProductType } from "@/types/ProductType";
 import { createContext, useContext, useState } from "react";
 
 
@@ -14,6 +14,10 @@ export default function GlobalStateContextProvider({ children }: Props) {
 
     const [products, setProducts] = useState<ProductType[]>([])
 
+    const [selectedProduct, setSelectedProduct] = useState<ProductType>(ProductDefaultValue)
+
+    const [cartItems, setCartItems] = useState<ProductType[]>([])
+
     const getProducts = async () => {
         try {
             let res = await getProductsRequest()
@@ -26,7 +30,11 @@ export default function GlobalStateContextProvider({ children }: Props) {
     const data: GlobalStateContextTypes = {
         products,
         setProducts,
-        getProducts
+        getProducts,
+        selectedProduct,
+        setSelectedProduct,
+        cartItems,
+        setCartItems,
     };
 
     return <Context.Provider value={data}>{children}</Context.Provider>;
