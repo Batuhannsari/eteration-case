@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/products', // "/" adresi /products sayfasına yönlendirilecek
+        permanent: true, // Yönlendirme kalıcı olacak
+      },
+    ];
+  },
 };
 
 export default nextConfig;
