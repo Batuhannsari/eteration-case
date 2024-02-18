@@ -1,47 +1,62 @@
 import { useGlobalStateContext } from '@/context/GlobalStateContext'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './CartItem.module.scss'
 import { Button, Typography } from '@mui/material'
+import { ProductType } from '@/types/ProductType'
 
 type Iprops = {
+    data: ProductType,
+    count: number
 }
 
 const CartItem: React.FC<Iprops> = (props) => {
 
-    const { } = useGlobalStateContext()
+    const { addToCart, deleteFromCart } = useGlobalStateContext()
+
+    const [first, setFirst] = useState(false)
+
+    useEffect(() => {
+        setFirst(true)
+
+    }, [])
+
 
     return (
         <>
-            <div className={styles.container}>
-                <div className={styles.description}>
-                    <Typography className={styles.name}>Total Price: </Typography>
-                    <Typography className={styles.price}>Total Price: </Typography>
-                </div>
-
-                <div className={styles.buttons}>
-                    <Button
-                        variant='contained'
-                        className={styles.button}
-                        onClick={() => {
-                        }}
-                    >
-                        -
-                    </Button>
-
-                    <div className={styles.value}>
-                        2
+            {
+                first &&
+                <div className={styles.container}>
+                    <div className={styles.description}>
+                        <Typography className={styles.name}>Total Price: </Typography>
+                        <Typography className={styles.price}>{(Number(props.data.price) * props.count) + " ₺"} </Typography>
                     </div>
 
-                    <Button
-                        variant='contained'
-                        className={styles.button}
-                        onClick={() => {
-                        }}
-                    >
-                        -
-                    </Button>
-                </div>
-            </div>
+                    <div className={styles.buttons}>
+                        <Button
+                            variant='contained'
+                            className={styles.button}
+                            onClick={() => {
+                                deleteFromCart(props.data)
+                            }}
+                        >
+                            -
+                        </Button>
+
+                        <div className={styles.value}>
+                            {props.count}
+                        </div>
+
+                        <Button
+                            variant='contained'
+                            className={styles.button}
+                            onClick={() => {
+                                addToCart(props.data)
+                            }}
+                        >
+                            +
+                        </Button>
+                    </div>
+                </div>}
         </>
     )
 

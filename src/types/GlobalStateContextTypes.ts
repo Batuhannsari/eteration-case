@@ -9,4 +9,9 @@ export type GlobalStateContextTypes = {
     setSelectedProduct: Dispatch<SetStateAction<ProductType>>,
     cartItems: ProductType[],
     setCartItems: Dispatch<SetStateAction<ProductType[]>>,
+    addToCart: (product: ProductType) => void,
+    deleteFromCart: (product: ProductType) => void,
+    totalPrice: number,
+    setTotalPrice: Dispatch<SetStateAction<number>>,
+    calcTotal: (cartItems: ProductType[]) => void,
 };

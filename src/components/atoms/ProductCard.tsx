@@ -11,7 +11,7 @@ type Iprops = {
 
 const ProductCard: React.FC<Iprops> = (props) => {
 
-    const { } = useGlobalStateContext()
+    const { cartItems, setCartItems, addToCart } = useGlobalStateContext()
 
     return (
         <>
@@ -26,7 +26,7 @@ const ProductCard: React.FC<Iprops> = (props) => {
                     variant='contained'
                     className={styles.button}
                     onClick={() => {
-                        console.log("1", props.data.id);
+                        addToCart(props.data)
                     }}
                 >
                     Add to Cart

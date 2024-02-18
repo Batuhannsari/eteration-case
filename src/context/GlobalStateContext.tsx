@@ -12,11 +12,18 @@ type Props = {
 
 export default function GlobalStateContextProvider({ children }: Props) {
 
-    const [products, setProducts] = useState<ProductType[]>([])
+    const [products, setProducts] = useState<ProductType[]>([]);
 
     const [selectedProduct, setSelectedProduct] = useState<ProductType>(ProductDefaultValue)
 
-    const [cartItems, setCartItems] = useState<ProductType[]>([])
+    const [cartItems, setCartItems] = useState<ProductType[]>(() => {
+        if (typeof localStorage !== 'undefined') {
+            const storedProducts = localStorage.getItem('cartItems');
+            return storedProducts ? JSON.parse(storedProducts) : [];
+        }
+    });
+
+    const [totalPrice, setTotalPrice] = useState(0)
 
     const getProducts = async () => {
         try {
@@ -27,6 +34,33 @@ export default function GlobalStateContextProvider({ children }: Props) {
         } catch (error) { }
     }
 
+    const addToCart = (product: ProductType) => {
+        const updatedCartItems = [...cartItems, product];
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+        setCartItems(updatedCartItems);
+        calcTotal(updatedCartItems)
+    }
+
+    const deleteFromCart = (product: ProductType) => {
+        const index = cartItems.findIndex(item => item.id === product.id);
+        if (index !== -1) {
+            const updatedCartItems = [...cartItems];
+            updatedCartItems.splice(index, 1);
+            localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+            setCartItems(updatedCartItems);
+            calcTotal(updatedCartItems)
+        }
+    }
+
+    const calcTotal = (cartItems: ProductType[]) => {
+        if (cartItems) {
+            const totalPrice = cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
+            setTotalPrice(totalPrice)
+        }
+    }
+
+
+
     const data: GlobalStateContextTypes = {
         products,
         setProducts,
@@ -35,6 +69,11 @@ export default function GlobalStateContextProvider({ children }: Props) {
         setSelectedProduct,
         cartItems,
         setCartItems,
+        addToCart,
+        deleteFromCart,
+        totalPrice,
+        setTotalPrice,
+        calcTotal,
     };
 
     return <Context.Provider value={data}>{children}</Context.Provider>;
