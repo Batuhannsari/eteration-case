@@ -1,16 +1,24 @@
-import React from 'react'
+import MainTemplate from '@/components/templates/MainTemplate'
+import { useGlobalStateContext } from '@/context/GlobalStateContext'
+import React, { useEffect } from 'react'
 
 type Iprops = {
 }
 
-const Products: React.FC<Iprops> = (props) => {
+const Detail: React.FC<Iprops> = (props) => {
+
+
 
   return (
-    <div>
-      detail
-    </div>
+    <>
+      <MainTemplate>
+
+        <div>detail</div>
+
+      </MainTemplate>
+    </>
   )
 
 }
 
-export default Products
+export default Detail

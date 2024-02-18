@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  images: {
+    domains: ['loremflickr.com'],
+  },
   async redirects() {
     return [
       {
         source: '/',
-        destination: '/products', // "/" adresi /products sayfasına yönlendirilecek
-        permanent: true, // Yönlendirme kalıcı olacak
+        destination: '/products',
+        permanent: true,
       },
     ];
   },

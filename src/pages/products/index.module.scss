@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+}
+
+.filterSidebar {
+  display: flex;
+  width: 220px;
+  margin-top: 26px;
+  position: sticky;
+  top: 26px;
+  max-height: calc(100vh - 26px);
+}
+
+.mainContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  flex: 1;
+  margin-left: 28px;
+  margin-right: 35px;
+  margin-top: 33px;
+}
+
+.cartSidebar {
+  margin-top: 33px;
+  width: 213px;
+  position: sticky;
+  top: 33px;
+  max-height: calc(100vh - 33px);
+}

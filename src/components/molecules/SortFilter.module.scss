@@ -1,0 +1,15 @@
+.layout {
+
+    .title {
+        margin-bottom: 6px;
+        font-size: 12px;
+        color: var(--filter-title-text);
+    }
+
+    .radioGroup {
+        display: flex;
+        gap: 15px;
+        background-color: white;
+        padding: 15px;
+    }
+}

@@ -1,0 +1,59 @@
+.layout {
+    display: flex;
+    justify-content: center;
+    background-color: var(--blue);
+    height: 50px;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        max-width: 1306px;
+        height: 100%;
+
+        .left {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            gap: 28px;
+
+
+            .logo {
+                width: 308px;
+                color: white;
+                font-size: 24px;
+                font-weight: 800;
+            }
+
+            .search {}
+        }
+
+        .right {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            justify-content: flex-end;
+            gap: 17px;
+
+            .item {
+                display: flex;
+                gap: 2px;
+
+                .text {
+                    font-size: 16px;
+                    color: white;
+                }
+
+                .icon {
+                    font-size: 24px;
+                    color: white;
+                }
+            }
+
+        }
+    }
+}

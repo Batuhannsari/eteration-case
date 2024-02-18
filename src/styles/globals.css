@@ -1,10 +1,12 @@
 :root {
   --foreground-rgb: #000;
-  --background: #F8F9FA;
+  --background: #F9F9F9;
   --text-color: #2D3748;
   --text-color-soft: #A0AEC0;
   --border: #E2E8F0;
-  --green: #4FD1C5;
+  --blue: #2A59FE;
+  --filter-title-text: rgba(51, 51, 51, 0.7);
+  --filter-search-bg: #FAFAFB;
 }
 
 @media (prefers-color-scheme: dark) {
