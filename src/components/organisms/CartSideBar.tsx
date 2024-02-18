@@ -45,12 +45,15 @@ const CartSideBar: React.FC<Iprops> = (props) => {
                 <div className={styles.items}>
 
                     {
-                        uniqueItems && uniqueItems.length > 0 &&
-                        uniqueItems.map((v: any, i: number) => {
-                            return (
-                                <CartItem data={v.item} key={i} count={v.count} />
-                            )
-                        })
+                        uniqueItems && uniqueItems.length > 0 ?
+                            uniqueItems.map((v: any, i: number) => {
+                                return (
+                                    <CartItem data={v.item} key={i} count={v.count} />
+                                )
+                            }) :
+                            <Typography>
+                                Sepette ürün yok.
+                            </Typography>
                     }
 
                 </div>
