@@ -1,3 +1,48 @@
-.test {
-    background-color: red;
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .description {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .name {
+            font-size: 12px;
+            line-height: 12px;
+        }
+
+        .price {
+            font-size: 10px;
+            color: var(--blue);
+        }
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+
+        .button {
+            background-color: #F3F4F6;
+            color: black;
+            width: 25px;
+            height: 25px;
+            min-width: 0;
+        }
+
+        .value {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 28px;
+            height: 27px;
+            background-color: var(--blue);
+            color: white;
+        }
+    }
 }

@@ -8,6 +8,7 @@ import styles from './index.module.scss'
 import FilterSideBar from '@/components/organisms/FilterSideBar'
 import ProductCard from '@/components/atoms/ProductCard'
 import { ProductType } from '@/types/ProductType'
+import CartSideBar from '@/components/organisms/CartSideBar'
 
 type Iprops = {
 }
@@ -47,7 +48,7 @@ const Products: React.FC<Iprops> = (props) => {
           </div>
 
           <div className={styles.cartSidebar}>
-            sepet
+            <CartSideBar />
           </div>
         </div>
 

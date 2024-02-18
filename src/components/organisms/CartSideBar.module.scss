@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+
+    .items {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 15px;
+        background-color: white;
+        max-height: 400px;
+        overflow: auto;
+    }
+
+    .payment {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 15px;
+        background-color: white;
+
+        .text {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 4px;
+
+            .title {
+                font-size: 14px;
+            }
+
+            .value {
+                font-size: 14px;
+                color: var(--blue);
+                font-weight: bold;
+            }
+        }
+    }
+}
