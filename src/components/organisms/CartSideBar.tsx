@@ -39,21 +39,28 @@ const CartSideBar: React.FC<Iprops> = (props) => {
 
     }, [])
 
+    const [first, setFirst] = useState(false)
+
+    useEffect(() => {
+        setFirst(true)
+
+    }, [])
+
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.items}>
 
-                    {
+                    {first &&
                         uniqueItems && uniqueItems.length > 0 ?
-                            uniqueItems.map((v: any, i: number) => {
-                                return (
-                                    <CartItem data={v.item} key={i} count={v.count} />
-                                )
-                            }) :
-                            <Typography>
-                                Sepette ürün yok.
-                            </Typography>
+                        uniqueItems.map((v: any, i: number) => {
+                            return (
+                                <CartItem data={v.item} key={i} count={v.count} />
+                            )
+                        }) :
+                        <Typography>
+                            Sepette ürün yok.
+                        </Typography>
                     }
 
                 </div>

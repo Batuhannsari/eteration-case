@@ -1,13 +1,13 @@
 import { useGlobalStateContext } from '@/context/GlobalStateContext';
+import { Search } from '@mui/icons-material';
+import { Checkbox, FormControlLabel, InputAdornment, RadioGroup, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from './ModelFilter.module.scss';
-import { Checkbox, FormControlLabel, InputAdornment, RadioGroup, TextField, Typography } from '@mui/material';
-import { Search } from '@mui/icons-material';
 
 type IProps = {};
 
 const ModelFilter: React.FC<IProps> = (props) => {
-    const { products, filterStates, setFilterStates, sortProducts, filterProducts } = useGlobalStateContext();
+    const { products, filterStates, setFilterStates } = useGlobalStateContext();
     const [uniqueModels, setUniqueModels] = useState<string[]>([]);
     const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
 

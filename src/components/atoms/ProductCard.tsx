@@ -1,9 +1,9 @@
 import { useGlobalStateContext } from '@/context/GlobalStateContext'
-import React from 'react'
-import styles from './ProductCard.module.scss'
-import Image from 'next/image'
 import { ProductType } from '@/types/ProductType'
 import { Button, Typography } from '@mui/material'
+import Image from 'next/image'
+import React from 'react'
+import styles from './ProductCard.module.scss'
 
 type Iprops = {
     data: ProductType
@@ -11,7 +11,7 @@ type Iprops = {
 
 const ProductCard: React.FC<Iprops> = (props) => {
 
-    const { cartItems, setCartItems, addToCart } = useGlobalStateContext()
+    const { addToCart } = useGlobalStateContext()
 
     return (
         <>

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
 import { useGlobalStateContext } from '@/context/GlobalStateContext';
-import { InputAdornment, TextField, Typography } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
 import WorkIcon from '@mui/icons-material/Work';
+import { InputAdornment, TextField, Typography } from '@mui/material';
+import React from 'react';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-    const { filterProducts, filterStates, setFilterStates, setFilteredProducts, products, sortProducts } = useGlobalStateContext();
+    const { filterStates, setFilterStates } = useGlobalStateContext();
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;

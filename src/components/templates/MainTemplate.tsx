@@ -1,8 +1,8 @@
 import { useGlobalStateContext } from '@/context/GlobalStateContext'
-import React, { ReactNode } from 'react'
-import styles from './MainTemplate.module.scss'
-import Header from '../organisms/Header'
 import { Container } from '@mui/material'
+import React, { ReactNode } from 'react'
+import Header from '../organisms/Header'
+import styles from './MainTemplate.module.scss'
 
 type Iprops = {
     children: ReactNode

@@ -1,13 +1,13 @@
 import { useGlobalStateContext } from '@/context/GlobalStateContext';
+import { Search } from '@mui/icons-material';
+import { Checkbox, FormControlLabel, InputAdornment, RadioGroup, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from './BrandFilter.module.scss';
-import { Checkbox, FormControlLabel, InputAdornment, RadioGroup, TextField, Typography } from '@mui/material';
-import { Search } from '@mui/icons-material';
 
 type IProps = {};
 
 const BrandFilter: React.FC<IProps> = (props) => {
-    const { filterProducts, products, setFilteredProducts, filterStates, setFilterStates, sortProducts } = useGlobalStateContext();
+    const { products, filterStates, setFilterStates } = useGlobalStateContext();
     const [uniqueBrands, setUniqueBrands] = useState<string[]>([]);
     const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
 

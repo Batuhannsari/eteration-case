@@ -6,7 +6,7 @@ import styles from './SortFilter.module.scss';
 type Iprops = {};
 
 const SortFilter: React.FC<Iprops> = (props) => {
-    const { filterStates, setFilterStates, filteredProducts, setFilteredProducts, sortProducts } = useGlobalStateContext();
+    const { filterStates, setFilterStates, filteredProducts, sortProducts } = useGlobalStateContext();
 
     const options = [
         "Old to new",

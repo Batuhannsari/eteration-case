@@ -1,21 +1,18 @@
-import BrandFilter from '@/components/molecules/BrandFilter'
-import SortFilter from '@/components/molecules/SortFilter'
-import Header from '@/components/organisms/Header'
+import ProductCard from '@/components/atoms/ProductCard'
+import CartSideBar from '@/components/organisms/CartSideBar'
+import FilterSideBar from '@/components/organisms/FilterSideBar'
 import MainTemplate from '@/components/templates/MainTemplate'
 import { useGlobalStateContext } from '@/context/GlobalStateContext'
+import { ProductType } from '@/types/ProductType'
 import React, { useEffect } from 'react'
 import styles from './index.module.scss'
-import FilterSideBar from '@/components/organisms/FilterSideBar'
-import ProductCard from '@/components/atoms/ProductCard'
-import { ProductType } from '@/types/ProductType'
-import CartSideBar from '@/components/organisms/CartSideBar'
 
 type Iprops = {
 }
 
 const Products: React.FC<Iprops> = (props) => {
 
-  const { filterProducts, filterStates, products, filteredProducts, setProducts, getProducts } = useGlobalStateContext()
+  const { filterProducts, filterStates, filteredProducts, getProducts } = useGlobalStateContext()
 
   useEffect(() => {
     getProducts()
