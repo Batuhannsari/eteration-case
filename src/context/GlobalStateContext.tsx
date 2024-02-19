@@ -30,6 +30,7 @@ export default function GlobalStateContextProvider({ children }: Props) {
         sort: "",
         brand: [""],
         model: [""],
+        search: ""
     })
 
     const getProducts = async () => {
