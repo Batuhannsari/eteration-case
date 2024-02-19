@@ -13,6 +13,7 @@ type Props = {
 export default function GlobalStateContextProvider({ children }: Props) {
 
     const [products, setProducts] = useState<ProductType[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
 
     const [selectedProduct, setSelectedProduct] = useState<ProductType>(ProductDefaultValue)
 
@@ -36,6 +37,7 @@ export default function GlobalStateContextProvider({ children }: Props) {
             let res = await getProductsRequest()
             if (res) {
                 setProducts(res.data)
+                setFilteredProducts(res.data)
                 setFilterStates((prev) => ({ ...prev, sort: "Old to new" }))
             }
         } catch (error) { }
@@ -71,6 +73,8 @@ export default function GlobalStateContextProvider({ children }: Props) {
     const data: GlobalStateContextTypes = {
         products,
         setProducts,
+        filteredProducts,
+        setFilteredProducts,
         getProducts,
         selectedProduct,
         setSelectedProduct,

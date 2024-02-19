@@ -6,7 +6,7 @@ import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@m
 type Iprops = {};
 
 const SortFilter: React.FC<Iprops> = (props) => {
-    const { filterStates, setFilterStates, products, setProducts } = useGlobalStateContext();
+    const { filterStates, setFilterStates, filteredProducts, setFilteredProducts } = useGlobalStateContext();
 
     const options = [
         "Old to new",
@@ -29,7 +29,7 @@ const SortFilter: React.FC<Iprops> = (props) => {
     };
 
     const sortProducts = () => {
-        const sortedProducts = [...products];
+        const sortedProducts = [...filteredProducts];
         switch (filterStates.sort) {
             case "Old to new":
                 sortedProducts.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
@@ -46,7 +46,7 @@ const SortFilter: React.FC<Iprops> = (props) => {
             default:
                 break;
         }
-        setProducts(sortedProducts);
+        setFilteredProducts(sortedProducts);
     };
 
     return (

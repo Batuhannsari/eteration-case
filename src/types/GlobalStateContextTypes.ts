@@ -5,6 +5,8 @@ import { FilterStatesType } from "./FilterStatesType";
 export type GlobalStateContextTypes = {
     products: ProductType[],
     setProducts: Dispatch<SetStateAction<ProductType[]>>,
+    filteredProducts: ProductType[],
+    setFilteredProducts: Dispatch<SetStateAction<ProductType[]>>,
     getProducts: () => void,
     selectedProduct: ProductType,
     setSelectedProduct: Dispatch<SetStateAction<ProductType>>,

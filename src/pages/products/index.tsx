@@ -15,12 +15,15 @@ type Iprops = {
 
 const Products: React.FC<Iprops> = (props) => {
 
-  const { products, setProducts, getProducts } = useGlobalStateContext()
+  const { products, filteredProducts, setProducts, getProducts } = useGlobalStateContext()
 
   useEffect(() => {
     getProducts()
 
   }, [])
+
+  console.log('products', products)
+  console.log('filteredProducts', filteredProducts)
 
   return (
     <>
@@ -35,8 +38,8 @@ const Products: React.FC<Iprops> = (props) => {
           <div className={styles.mainContent}>
 
             {
-              products && products.length > 0 &&
-              products.map((v: ProductType, i: number) => {
+              filteredProducts && filteredProducts.length > 0 &&
+              filteredProducts.map((v: ProductType, i: number) => {
                 return (
                   <ProductCard data={v} key={i} />
                 )
