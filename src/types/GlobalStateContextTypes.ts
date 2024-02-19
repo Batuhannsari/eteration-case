@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { ProductType } from "./ProductType";
 import { FilterStatesType } from "./FilterStatesType";
+import { PaginationType } from "./PaginationType";
 
 export type GlobalStateContextTypes = {
     products: ProductType[],
@@ -20,6 +21,8 @@ export type GlobalStateContextTypes = {
     filterStates: FilterStatesType,
     setFilterStates: Dispatch<SetStateAction<FilterStatesType>>,
     sortProducts: (filteredProducts: ProductType[]) => void,
-    filterProducts: () => void
+    filterProducts: () => void,
+    pagination: PaginationType,
+    setPagination: Dispatch<SetStateAction<PaginationType>>,
 
 };

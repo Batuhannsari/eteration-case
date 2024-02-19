@@ -1,5 +1,6 @@
 import { getProductsRequest } from "@/api/controllers/product-controller";
 import { GlobalStateContextTypes } from "@/types/GlobalStateContextTypes";
+import { PaginationDefaultValue, PaginationType } from "@/types/PaginationType";
 import { ProductDefaultValue, ProductType } from "@/types/ProductType";
 import { createContext, useContext, useState } from "react";
 
@@ -16,6 +17,8 @@ export default function GlobalStateContextProvider({ children }: Props) {
     const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
 
     const [selectedProduct, setSelectedProduct] = useState<ProductType>(ProductDefaultValue)
+
+    const [pagination, setPagination] = useState<PaginationType>(PaginationDefaultValue)
 
     const [cartItems, setCartItems] = useState<ProductType[]>(() => {
         if (typeof localStorage !== 'undefined') {
@@ -107,6 +110,7 @@ export default function GlobalStateContextProvider({ children }: Props) {
             filtered = filtered.filter(product => model.includes(product.model));
         }
         setFilteredProducts(filtered);
+        setPagination((prev) => ({ ...prev, page: 1 }))
         sortProducts(filtered);
     };
 
@@ -129,6 +133,8 @@ export default function GlobalStateContextProvider({ children }: Props) {
         setFilterStates,
         sortProducts,
         filterProducts,
+        pagination,
+        setPagination,
     };
 
     return <Context.Provider value={data}>{children}</Context.Provider>;

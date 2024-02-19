@@ -13,12 +13,25 @@
 
 .mainContent {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  flex: 1;
+  flex-direction: column;
   margin-left: 28px;
   margin-right: 35px;
   margin-top: 33px;
+  flex: 1;
+
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
 }
 
 .cartSidebar {
