@@ -41,9 +41,18 @@ const BrandFilter: React.FC<IProps> = (props) => {
             model: updatedModels,
         }));
 
-        setFilteredProducts(filteredProducts);
-        sortProducts(filteredProducts)
+        if (filterStates.search !== "") {
+            const searchAndFiltered = filteredProducts.filter(v => v.name.toLowerCase().includes(filterStates.search.toLowerCase()))
+            setFilteredProducts(searchAndFiltered)
+            sortProducts(searchAndFiltered)
+        } else {
+            setFilteredProducts(filteredProducts);
+            sortProducts(filteredProducts)
+        }
+
     };
+
+    console.log('filterStates', filterStates)
 
 
     useEffect(() => {
