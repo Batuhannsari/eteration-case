@@ -49,10 +49,12 @@ const Products: React.FC<Iprops> = (props) => {
         </div>
         <div className={styles.mainContent}>
           <div className={styles.products}>
-            {currentProducts && currentProducts.length > 0 &&
+            {currentProducts && currentProducts.length > 0 ?
               currentProducts.map((v: ProductType, i: number) => {
                 return <ProductCard data={v} key={i} />
-              })}
+              }) :
+              <div>Aradığınız kriterlere uygun ürün bulunamadı.</div>
+            }
           </div>
           {pagination.count > 1 && (
             <Pagination

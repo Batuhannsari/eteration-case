@@ -80,16 +80,22 @@ const ModelFilter: React.FC<IProps> = (props) => {
 
                 <div className={styles.checkBoxGroup}>
 
-                    {filteredOptions.map((v, i) => (
-                        <FormControlLabel
-                            key={i}
-                            value={v}
-                            control={<Checkbox onChange={handleModelChange} />}
-                            checked={filterStates.model.includes(v)}
-                            label={v}
-                            sx={{ width: '100%' }}
-                        />
-                    ))}
+                    {
+                        filteredOptions && filteredOptions.length > 0 ?
+
+                            filteredOptions.map((v, i) => (
+                                <FormControlLabel
+                                    key={i}
+                                    value={v}
+                                    control={<Checkbox onChange={handleModelChange} />}
+                                    checked={filterStates.model.includes(v)}
+                                    label={v}
+                                    sx={{ width: '100%' }}
+                                />
+                            ))
+                            :
+                            <div>Sonuç yok.</div>
+                    }
 
                 </div>
 
