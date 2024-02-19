@@ -7,15 +7,22 @@ type Iprops = {
 }
 
 const SortFilter: React.FC<Iprops> = (props) => {
-
-    const { } = useGlobalStateContext()
+    const { filterStates, setFilterStates } = useGlobalStateContext();
 
     const options = [
         "Old to new",
         "New to old",
-        "Price hight to low",
-        "Price low to High",
-    ]
+        "Price high to low",
+        "Price low to high",
+    ];
+
+    const handleSortChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedSort = event.target.value;
+        setFilterStates(prevState => ({
+            ...prevState,
+            sort: selectedSort,
+        }));
+    };
 
     return (
         <>
@@ -24,7 +31,11 @@ const SortFilter: React.FC<Iprops> = (props) => {
                     Sort By
                 </Typography>
 
-                <RadioGroup value={"Old to new"} onChange={() => { }} className={styles.radioGroup} >
+                <RadioGroup
+                    value={filterStates.sort}
+                    onChange={handleSortChange}
+                    className={styles.radioGroup}
+                >
                     {options.map((v, i) => (
                         <FormControlLabel
                             key={i}
@@ -34,12 +45,9 @@ const SortFilter: React.FC<Iprops> = (props) => {
                         />
                     ))}
                 </RadioGroup>
-
-
             </div>
         </>
-    )
-
-}
+    );
+};
 
 export default SortFilter

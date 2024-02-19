@@ -1,0 +1,25 @@
+.layout {
+
+    .title {
+        margin-bottom: 6px;
+        font-size: 12px;
+        color: var(--filter-title-text);
+    }
+
+    .radioContainer {
+        display: flex;
+        gap: 15px;
+        background-color: white;
+        padding: 15px;
+
+        .search {}
+
+        .checkBoxGroup {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 100px;
+            overflow: auto;
+        }
+    }
+}

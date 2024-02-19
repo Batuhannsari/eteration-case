@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { ProductType } from "./ProductType";
+import { FilterStatesType } from "./FilterStatesType";
 
 export type GlobalStateContextTypes = {
     products: ProductType[],
@@ -14,4 +15,6 @@ export type GlobalStateContextTypes = {
     totalPrice: number,
     setTotalPrice: Dispatch<SetStateAction<number>>,
     calcTotal: (cartItems: ProductType[]) => void,
+    filterStates: FilterStatesType,
+    setFilterStates: Dispatch<SetStateAction<FilterStatesType>>,
 };

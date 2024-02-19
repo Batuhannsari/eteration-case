@@ -52,13 +52,15 @@ const CustomThemeProvider = ({ children }: any) => {
                         }
                     }
                 },
-                /*  MuiCheckbox: {
-                     styleOverrides: {
-                         root: {
-                             color: "var(--blue)"
-                         }
-                     }
-                 }, */
+                MuiCheckbox: {
+                    styleOverrides: {
+                        root: {
+                            height: "20px",
+                            width: "20px",
+                            color: "var(--blue)"
+                        }
+                    }
+                },
                 MuiSvgIcon: {
                     styleOverrides: {
                         root: {

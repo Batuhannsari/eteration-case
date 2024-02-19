@@ -22,8 +22,6 @@ const Products: React.FC<Iprops> = (props) => {
 
   }, [])
 
-  console.log('products', products)
-
   return (
     <>
       <MainTemplate>

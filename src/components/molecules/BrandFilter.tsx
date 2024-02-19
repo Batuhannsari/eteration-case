@@ -1,86 +1,97 @@
-import { useGlobalStateContext } from '@/context/GlobalStateContext'
-import React from 'react'
-import styles from './BrandFilter.module.scss'
-import { FormControl, FormControlLabel, InputAdornment, Radio, RadioGroup, TextField, Typography } from '@mui/material'
-import { CheckBox, Search } from '@mui/icons-material'
+import { useGlobalStateContext } from '@/context/GlobalStateContext';
+import React, { useEffect, useState } from 'react';
+import styles from './BrandFilter.module.scss';
+import { Checkbox, FormControlLabel, InputAdornment, RadioGroup, TextField, Typography } from '@mui/material';
+import { Search } from '@mui/icons-material';
 
-type Iprops = {
-}
+type IProps = {};
 
-const BrandFilter: React.FC<Iprops> = (props) => {
+const BrandFilter: React.FC<IProps> = (props) => {
+    const { products, filterStates, setFilterStates } = useGlobalStateContext();
+    const [uniqueBrands, setUniqueBrands] = useState<string[]>([]);
+    const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
 
-    const { } = useGlobalStateContext()
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        const filtered = uniqueBrands.filter((option: string) =>
+            option.toLowerCase().includes(value.toLowerCase())
+        );
+        setFilteredOptions(filtered);
+    };
 
-    const options = [
-        "Apple",
-        "Samsung",
-        "Huawei",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-    ]
+    const handleBrandChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedBrand = event.target.value;
+        const updatedBrands = filterStates.brand.includes(selectedBrand)
+            ? filterStates.brand.filter(brand => brand !== selectedBrand)
+            : [...filterStates.brand, selectedBrand];
+        setFilterStates(prevState => ({
+            ...prevState,
+            brand: updatedBrands,
+        }));
+    };
+
+    useEffect(() => {
+        const uniqueBrandsSet = new Set<string>();
+        const repeatedBrands: string[] = [];
+        products.forEach(product => {
+            const { brand } = product;
+            if (!uniqueBrandsSet.has(brand)) {
+                uniqueBrandsSet.add(brand);
+            } else if (!repeatedBrands.includes(brand)) {
+                repeatedBrands.push(brand);
+            }
+        });
+        const uniqueBrandsArray = Array.from(uniqueBrandsSet);
+        setUniqueBrands(uniqueBrandsArray);
+        setFilteredOptions(uniqueBrandsArray);
+    }, [products]);
 
     return (
-        <>
-            <div className={styles.layout}>
-                <Typography className={styles.title}>
-                    Brands
-                </Typography>
+        <div className={styles.layout}>
+            <Typography className={styles.title}>Brands</Typography>
 
-                <RadioGroup value={"Old to new"} onChange={() => { }} className={styles.radioContainer} >
+            <RadioGroup value={filterStates.brand} className={styles.radioContainer} >
 
-                    <TextField
-                        variant="outlined"
-                        placeholder="Search"
-                        onChange={(e) => { console.log('e', e.target.value) }}
-                        className={styles.search}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start"  >
-                                    <Search style={{ color: "#868CA5" }} />
-                                </InputAdornment>
-                            ),
-                            sx: (theme) => ({
-                                backgroundColor: "var(--filter-search-bg)",
-                                "& fieldset": { border: 'none' }
-                            }),
-                        }}
-                        size="small"
-                        value={""}
-                        fullWidth
-                    />
+                <TextField
+                    variant="outlined"
+                    placeholder="Search"
+                    onChange={handleSearch}
+                    className={styles.search}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <Search style={{ color: '#868CA5' }} />
+                            </InputAdornment>
+                        ),
+                        sx: (theme) => ({
+                            backgroundColor: 'var(--filter-search-bg)',
+                            '& fieldset': { border: 'none' },
+                        }),
+                    }}
+                    size="small"
+                    fullWidth
+                />
 
 
-                    <div className={styles.checkBoxGroup}>
+                <div className={styles.checkBoxGroup}>
 
-                        {options.map((v, i) => (
-                            <FormControlLabel
-                                key={i}
-                                value={v}
-                                control={<CheckBox />}
-                                label={v}
-                                sx={{ width: "100%" }}
-                            />
-                        ))}
+                    {filteredOptions.map((v, i) => (
+                        <FormControlLabel
+                            key={i}
+                            value={v}
+                            control={<Checkbox onChange={handleBrandChange} />}
+                            checked={filterStates.brand.includes(v)}
+                            label={v}
+                            sx={{ width: '100%' }}
+                        />
+                    ))}
 
-                    </div>
+                </div>
 
-                </RadioGroup>
+            </RadioGroup>
 
-            </div>
-        </>
-    )
+        </div>
+    );
+};
 
-}
-
-export default BrandFilter
+export default BrandFilter;

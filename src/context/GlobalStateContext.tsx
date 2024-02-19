@@ -25,6 +25,12 @@ export default function GlobalStateContextProvider({ children }: Props) {
 
     const [totalPrice, setTotalPrice] = useState(0)
 
+    const [filterStates, setFilterStates] = useState({
+        sort: "Old to new",
+        brand: [""],
+        model: [""],
+    })
+
     const getProducts = async () => {
         try {
             let res = await getProductsRequest()
@@ -74,6 +80,8 @@ export default function GlobalStateContextProvider({ children }: Props) {
         totalPrice,
         setTotalPrice,
         calcTotal,
+        filterStates,
+        setFilterStates,
     };
 
     return <Context.Provider value={data}>{children}</Context.Provider>;
