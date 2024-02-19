@@ -5,9 +5,12 @@ import WorkIcon from '@mui/icons-material/Work';
 import { InputAdornment, TextField, Typography } from '@mui/material';
 import React from 'react';
 import styles from './Header.module.scss';
+import { useRouter } from 'next/navigation';
 
 const Header: React.FC = () => {
     const { filterStates, setFilterStates } = useGlobalStateContext();
+
+    const router = useRouter()
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
@@ -19,7 +22,7 @@ const Header: React.FC = () => {
         <div className={styles.layout}>
             <div className={styles.container}>
                 <div className={styles.left}>
-                    <Typography className={styles.logo}>Eteration</Typography>
+                    <Typography onClick={() => { router.push("/products") }} className={styles.logo}>Eteration</Typography>
                     <TextField
                         variant="outlined"
                         placeholder="Search"

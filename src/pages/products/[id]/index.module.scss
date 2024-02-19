@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 33px;
+  gap: 30px;
+
+  .detailCard {
+    flex: 3
+  }
+
+  .cart {
+    flex: 1
+  }
+}

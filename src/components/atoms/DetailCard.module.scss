@@ -1,0 +1,48 @@
+.test {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background-color: white;
+    gap: 35px;
+
+    .image {
+        object-fit: cover;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        flex: 1
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+
+        .title {
+
+            .top {
+                font-size: 24px;
+            }
+
+            .bottom {
+                font-size: 20px;
+                color: var(--blue);
+            }
+        }
+    }
+
+    .detail {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        .button {
+            font-size: 18px;
+        }
+
+        .text {
+            font-size: 16px;
+        }
+    }
+}
