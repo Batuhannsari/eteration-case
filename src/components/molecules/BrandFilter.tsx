@@ -11,6 +11,9 @@ const BrandFilter: React.FC<IProps> = (props) => {
     const [uniqueBrands, setUniqueBrands] = useState<string[]>([]);
     const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
 
+    console.log('products', products)
+
+
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         const filtered = uniqueBrands.filter((option: string) =>
@@ -24,11 +27,22 @@ const BrandFilter: React.FC<IProps> = (props) => {
         const updatedBrands = filterStates.brand.includes(selectedBrand)
             ? filterStates.brand.filter(brand => brand !== selectedBrand)
             : [...filterStates.brand, selectedBrand];
+    
+        // Seçilen markaya ait modelleri al
+        const modelsToRemove = products
+            .filter(product => product.brand === selectedBrand)
+            .map(product => product.model);
+    
+        // Markaya ait modelleri seçili modellerden kaldır
+        const updatedModels = filterStates.model.filter(model => !modelsToRemove.includes(model));
+    
         setFilterStates(prevState => ({
             ...prevState,
             brand: updatedBrands,
+            model: updatedModels,
         }));
     };
+    
 
     useEffect(() => {
         const uniqueBrandsSet = new Set<string>();
