@@ -3,9 +3,9 @@ import { Search } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
 import WorkIcon from '@mui/icons-material/Work';
 import { InputAdornment, TextField, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import styles from './Header.module.scss';
-import { useRouter } from 'next/navigation';
 
 const Header: React.FC = () => {
     const { filterStates, setFilterStates } = useGlobalStateContext();

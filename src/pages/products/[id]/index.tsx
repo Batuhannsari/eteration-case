@@ -1,3 +1,4 @@
+import DetailCard from '@/components/atoms/DetailCard'
 import CartSideBar from '@/components/organisms/CartSideBar'
 import MainTemplate from '@/components/templates/MainTemplate'
 import { useGlobalStateContext } from '@/context/GlobalStateContext'
@@ -5,7 +6,6 @@ import { ProductDefaultValue, ProductType } from '@/types/ProductType'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import styles from './index.module.scss'
-import DetailCard from '@/components/atoms/DetailCard'
 type Iprops = {
 }
 

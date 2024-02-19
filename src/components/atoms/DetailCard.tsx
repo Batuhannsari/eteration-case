@@ -1,8 +1,8 @@
 import { useGlobalStateContext } from '@/context/GlobalStateContext'
+import { Button, Typography } from '@mui/material'
+import Image from 'next/image'
 import React from 'react'
 import styles from './DetailCard.module.scss'
-import Image from 'next/image'
-import { Button, Typography } from '@mui/material'
 
 type Iprops = {
 }

@@ -4,7 +4,6 @@ import { PaginationDefaultValue, PaginationType } from "@/types/PaginationType";
 import { ProductDefaultValue, ProductType } from "@/types/ProductType";
 import { createContext, useContext, useState } from "react";
 
-
 const Context = createContext<GlobalStateContextTypes | null>(null);
 
 type Props = {
