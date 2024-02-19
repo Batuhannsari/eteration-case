@@ -26,7 +26,7 @@ export default function GlobalStateContextProvider({ children }: Props) {
     const [totalPrice, setTotalPrice] = useState(0)
 
     const [filterStates, setFilterStates] = useState({
-        sort: "Old to new",
+        sort: "",
         brand: [""],
         model: [""],
     })
@@ -36,6 +36,7 @@ export default function GlobalStateContextProvider({ children }: Props) {
             let res = await getProductsRequest()
             if (res) {
                 setProducts(res.data)
+                setFilterStates((prev) => ({ ...prev, sort: "Old to new" }))
             }
         } catch (error) { }
     }

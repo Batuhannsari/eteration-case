@@ -12,8 +12,6 @@ const ModelFilter: React.FC<IProps> = (props) => {
     const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
 
     useEffect(() => {
-        // Brandler seçili değilse tüm modelleri göster
-
         if (filterStates.brand.length === 1) {
             const allModels = products.map(product => product.model);
             const uniqueModelsSet = new Set<string>(allModels);
@@ -21,8 +19,6 @@ const ModelFilter: React.FC<IProps> = (props) => {
             setUniqueModels(uniqueModelsArray);
             setFilteredOptions(uniqueModelsArray);
         } else {
-
-            // Brandler seçili ise, seçili brandlerin modellerini göster
             const filteredProducts = products.filter(product => filterStates.brand.includes(product.brand));
             const models = filteredProducts.map(product => product.model);
             const uniqueModelsSet = new Set<string>(models);
@@ -50,8 +46,6 @@ const ModelFilter: React.FC<IProps> = (props) => {
             model: updatedModels,
         }));
     };
-
-    console.log('filterStates', filterStates);
 
     return (
         <div className={styles.layout}>
