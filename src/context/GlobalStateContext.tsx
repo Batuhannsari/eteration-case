@@ -89,7 +89,26 @@ export default function GlobalStateContextProvider({ children }: Props) {
         }
         setFilteredProducts(sortedProducts);
     };
+    const filterProducts = () => {
+        const { brand, model, search } = filterStates;
+        let filtered = [...products];
 
+        if (search) {
+            filtered = filtered.filter(product =>
+                product.name.toLowerCase().includes(search.toLowerCase())
+            );
+        }
+
+        if (brand.length > 1) {
+            filtered = filtered.filter(product => brand.includes(product.brand));
+        }
+
+        if (model.length > 1) {
+            filtered = filtered.filter(product => model.includes(product.model));
+        }
+        setFilteredProducts(filtered);
+        sortProducts(filtered);
+    };
 
     const data: GlobalStateContextTypes = {
         products,
@@ -109,6 +128,7 @@ export default function GlobalStateContextProvider({ children }: Props) {
         filterStates,
         setFilterStates,
         sortProducts,
+        filterProducts,
     };
 
     return <Context.Provider value={data}>{children}</Context.Provider>;

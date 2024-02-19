@@ -7,21 +7,12 @@ import WorkIcon from '@mui/icons-material/Work';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-    const { filterStates, setFilterStates, setFilteredProducts, products, sortProducts } = useGlobalStateContext();
+    const { filterProducts, filterStates, setFilterStates, setFilteredProducts, products, sortProducts } = useGlobalStateContext();
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setFilterStates((prev) => ({ ...prev, search: value }));
-        filterProducts(value);
 
-    };
-
-    const filterProducts = (value: string) => {
-        const filteredProducts = products.filter(product =>
-            product.name.toLowerCase().includes(value.toLowerCase())
-        );
-        setFilteredProducts(filteredProducts);
-        sortProducts(filteredProducts)
     };
 
     return (

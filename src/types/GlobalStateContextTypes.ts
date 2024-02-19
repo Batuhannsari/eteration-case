@@ -19,5 +19,7 @@ export type GlobalStateContextTypes = {
     calcTotal: (cartItems: ProductType[]) => void,
     filterStates: FilterStatesType,
     setFilterStates: Dispatch<SetStateAction<FilterStatesType>>,
-    sortProducts: (filteredProducts: ProductType[]) => void
+    sortProducts: (filteredProducts: ProductType[]) => void,
+    filterProducts: () => void
+
 };

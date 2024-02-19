@@ -7,7 +7,7 @@ import { Search } from '@mui/icons-material';
 type IProps = {};
 
 const ModelFilter: React.FC<IProps> = (props) => {
-    const { products, filterStates, setFilterStates, setFilteredProducts, sortProducts } = useGlobalStateContext();
+    const { products, filterStates, setFilterStates, sortProducts, filterProducts } = useGlobalStateContext();
     const [uniqueModels, setUniqueModels] = useState<string[]>([]);
     const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
 
@@ -47,15 +47,8 @@ const ModelFilter: React.FC<IProps> = (props) => {
             model: updatedModels,
         }));
 
-        if (updatedModels.length === 1) {
-            setFilteredProducts(products);
-            sortProducts(products);
-        } else {
-            const filteredProducts = products.filter(product => updatedModels.includes(product.model));
-            setFilteredProducts(filteredProducts);
-            sortProducts(filteredProducts);
-        }
     };
+
 
 
     return (

@@ -15,15 +15,17 @@ type Iprops = {
 
 const Products: React.FC<Iprops> = (props) => {
 
-  const { products, filteredProducts, setProducts, getProducts } = useGlobalStateContext()
+  const { filterProducts, filterStates, products, filteredProducts, setProducts, getProducts } = useGlobalStateContext()
 
   useEffect(() => {
     getProducts()
 
   }, [])
 
-  console.log('products', products)
-  console.log('filteredProducts', filteredProducts)
+  useEffect(() => {
+    filterProducts()
+
+  }, [filterStates])
 
   return (
     <>
