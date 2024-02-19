@@ -18,12 +18,14 @@ const ProductCard: React.FC<Iprops> = (props) => {
 
     return (
         <>
-            <div className={styles.container} onClick={() => { router.push(`/products/${props.data.id}`) }}>
-                <Image width={160} height={150} alt='' src={props.data.image} className={styles.image} />
+            <div className={styles.container} >
+                <div className={styles.containerTop} onClick={() => { router.push(`/products/${props.data.id}`) }}>
+                    <Image width={160} height={150} alt='' src={props.data.image} className={styles.image} />
 
-                <Typography className={styles.price}>{props.data.price + " ₺"}</Typography>
+                    <Typography className={styles.price}>{props.data.price + " ₺"}</Typography>
 
-                <Typography className={styles.title}>{props.data.name}</Typography>
+                    <Typography className={styles.title}>{props.data.name}</Typography>
+                </div>
 
                 <Button
                     variant='contained'

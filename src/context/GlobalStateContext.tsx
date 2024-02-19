@@ -3,6 +3,7 @@ import { GlobalStateContextTypes } from "@/types/GlobalStateContextTypes";
 import { PaginationDefaultValue, PaginationType } from "@/types/PaginationType";
 import { ProductDefaultValue, ProductType } from "@/types/ProductType";
 import { createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 const Context = createContext<GlobalStateContextTypes | null>(null);
 
@@ -51,6 +52,7 @@ export default function GlobalStateContextProvider({ children }: Props) {
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
         setCartItems(updatedCartItems);
         calcTotal(updatedCartItems)
+        toast.success("Ürün sepete eklendi.")
     }
 
     const deleteFromCart = (product: ProductType) => {
@@ -61,6 +63,7 @@ export default function GlobalStateContextProvider({ children }: Props) {
             localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
             setCartItems(updatedCartItems);
             calcTotal(updatedCartItems)
+            toast.success("Ürün sepetten çıkartıldı.")
         }
     }
 
