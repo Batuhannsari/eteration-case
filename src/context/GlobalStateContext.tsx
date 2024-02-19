@@ -68,6 +68,26 @@ export default function GlobalStateContextProvider({ children }: Props) {
         }
     }
 
+    const sortProducts = (filteredProducts: ProductType[]) => {
+        const sortedProducts = [...filteredProducts];
+        switch (filterStates.sort) {
+            case "Old to new":
+                sortedProducts.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+                break;
+            case "New to old":
+                sortedProducts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+                break;
+            case "Price high to low":
+                sortedProducts.sort((a, b) => Number(b.price) - Number(a.price));
+                break;
+            case "Price low to high":
+                sortedProducts.sort((a, b) => Number(a.price) - Number(b.price));
+                break;
+            default:
+                break;
+        }
+        setFilteredProducts(sortedProducts);
+    };
 
 
     const data: GlobalStateContextTypes = {
@@ -87,6 +107,7 @@ export default function GlobalStateContextProvider({ children }: Props) {
         calcTotal,
         filterStates,
         setFilterStates,
+        sortProducts,
     };
 
     return <Context.Provider value={data}>{children}</Context.Provider>;

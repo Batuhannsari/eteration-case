@@ -1,12 +1,12 @@
 import { useGlobalStateContext } from '@/context/GlobalStateContext';
+import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import styles from './SortFilter.module.scss';
-import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material';
 
 type Iprops = {};
 
 const SortFilter: React.FC<Iprops> = (props) => {
-    const { filterStates, setFilterStates, filteredProducts, setFilteredProducts } = useGlobalStateContext();
+    const { filterStates, setFilterStates, filteredProducts, setFilteredProducts, sortProducts } = useGlobalStateContext();
 
     const options = [
         "Old to new",
@@ -16,7 +16,7 @@ const SortFilter: React.FC<Iprops> = (props) => {
     ];
 
     useEffect(() => {
-        sortProducts();
+        sortProducts(filteredProducts);
 
     }, [filterStates.sort]);
 
@@ -28,26 +28,7 @@ const SortFilter: React.FC<Iprops> = (props) => {
         }));
     };
 
-    const sortProducts = () => {
-        const sortedProducts = [...filteredProducts];
-        switch (filterStates.sort) {
-            case "Old to new":
-                sortedProducts.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
-                break;
-            case "New to old":
-                sortedProducts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-                break;
-            case "Price high to low":
-                sortedProducts.sort((a, b) => Number(b.price) - Number(a.price));
-                break;
-            case "Price low to high":
-                sortedProducts.sort((a, b) => Number(a.price) - Number(b.price));
-                break;
-            default:
-                break;
-        }
-        setFilteredProducts(sortedProducts);
-    };
+
 
     return (
         <>

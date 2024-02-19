@@ -7,7 +7,7 @@ import { Search } from '@mui/icons-material';
 type IProps = {};
 
 const BrandFilter: React.FC<IProps> = (props) => {
-    const { products, setFilteredProducts, filterStates, setFilterStates } = useGlobalStateContext();
+    const { products, setFilteredProducts, filterStates, setFilterStates, sortProducts } = useGlobalStateContext();
     const [uniqueBrands, setUniqueBrands] = useState<string[]>([]);
     const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
 
@@ -31,7 +31,7 @@ const BrandFilter: React.FC<IProps> = (props) => {
 
         const updatedModels = filterStates.model.filter(model => !modelsToRemove.includes(model));
 
-        const filteredProducts = updatedBrands.length > 1 ? 
+        const filteredProducts = updatedBrands.length > 1 ?
             products.filter(product => updatedBrands.includes(product.brand)) :
             products;
 
@@ -42,8 +42,8 @@ const BrandFilter: React.FC<IProps> = (props) => {
         }));
 
         setFilteredProducts(filteredProducts);
+        sortProducts(filteredProducts)
     };
-
 
 
     useEffect(() => {
